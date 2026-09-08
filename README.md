@@ -1,4 +1,4 @@
-# esp32-home-automation-blynk
+//karunya kanth (cic)
 # ESP32 Home Automation using Blynk
 
 A smart home automation system built with an ESP32 microcontroller that allows remote control of household appliances (lights, fans, etc.) via the Blynk IoT platform. Relay modules are used to switch AC appliances on and off through a custom Blynk mobile app dashboard.

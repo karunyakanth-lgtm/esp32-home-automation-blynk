@@ -1,86 +1,82 @@
-//karunya kanth (cic)
-# ESP32 Home Automation using Blynk
+# 🏠 ESP32 Home Automation using Blynk
 
-A smart home automation system built with an ESP32 microcontroller that allows remote control of household appliances (lights, fans, etc.) via the Blynk IoT platform. Relay modules are used to switch AC appliances on and off through a custom Blynk mobile app dashboard.
+A smart-home prototype that allows appliances such as lights and fans to be controlled remotely using an **ESP32**, **Wi-Fi**, and the **Blynk IoT platform**.
 
-## Overview
+## 🎯 Project Goal
 
-This project demonstrates core IoT concepts including microcontroller programming, cloud connectivity, and actuator control. Commands sent from the Blynk mobile app travel through Blynk Cloud and are received by the ESP32 over Wi-Fi, which then triggers relay modules to switch connected appliances.
+Demonstrate how an IoT device receives commands from a mobile application through the cloud and controls physical hardware.
 
-## Architecture
+## 🔄 System Architecture
 
-The system works as follows:
+```text
+Blynk Mobile App
+       ↓
+   Blynk Cloud
+       ↓
+      Wi-Fi
+       ↓
+      ESP32
+       ↓
+   GPIO Output
+       ↓
+   Relay Module
+       ↓
+   Appliance
+```
 
-1. User taps a toggle in the **Blynk app**
-2. The command is sent over the internet to **Blynk Cloud**
-3. Blynk Cloud forwards the command to the **ESP32** over Wi-Fi
-4. The ESP32 runs a `BLYNK_WRITE()` callback and sets the corresponding **GPIO pin**
-5. The GPIO signal switches the connected **relay**
-6. The relay turns the **light or fan** on or off
+## ✨ Features
 
-*(See `architecture-diagram.png` in this repo for a visual overview.)*
+- Remote appliance control
+- Wi-Fi connectivity
+- Blynk mobile dashboard
+- ESP32-based control
+- Relay-based switching
+- Expandable to additional devices
 
-## Features
+## 🛠️ Tech Stack
 
-- Remote on/off control of two appliances (expandable to more)
-- Real-time control via the Blynk mobile app
-- Wi-Fi based communication, no physical proximity required
-- Simple, low-cost hardware setup
+- ESP32
+- C/C++
+- Arduino IDE
+- Blynk
+- Wi-Fi
+- Relay modules
 
-## Tech Stack
+## 🔌 Example Pin Configuration
 
-- **Microcontroller:** ESP32
-- **IDE:** Arduino IDE
-- **Language:** C/C++
-- **IoT Platform:** Blynk
-- **Hardware:** Relay module(s), ESP32 dev board
-- **Protocol:** Wi-Fi (via Blynk Cloud)
+| Appliance | ESP32 GPIO |
+|---|---:|
+| Light | GPIO 12 |
+| Fan | GPIO 14 |
 
-## Hardware Setup
+> Check your relay module documentation before wiring.
 
-| Component     | ESP32 Pin |
-|----------------|-----------|
-| Relay 1 (Light) | GPIO 12   |
-| Relay 2 (Fan)    | GPIO 14   |
+## 🚀 Setup
 
-> Note: This project uses `LOW` to activate the relay and `HIGH` to deactivate it, matching common active-low relay modules. Check your relay module's specification before wiring.
+1. Clone the repository.
+2. Install ESP32 board support in Arduino IDE.
+3. Install the Blynk library.
+4. Create `secrets.h` using the example template.
+5. Add your Wi-Fi and Blynk credentials.
+6. Connect the relay module.
+7. Upload the sketch.
+8. Configure the Blynk dashboard.
 
-## Setup Instructions
+## 🔐 Security
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/esp32-home-automation-blynk.git
-   ```
+**Never commit real Wi-Fi passwords or Blynk tokens.** Keep secrets local and excluded through `.gitignore`.
 
-2. Install the required libraries in Arduino IDE:
-   - `Blynk` (BlynkSimpleEsp32)
-   - ESP32 board support package
+## 🔮 Future Improvements
 
-3. Rename `secrets.h.example` to `secrets.h` and fill in your own credentials:
-   ```cpp
-   #define BLYNK_AUTH_TOKEN "your_blynk_auth_token"
-   #define WIFI_SSID "your_wifi_ssid"
-   #define WIFI_PASS "your_wifi_password"
-   ```
+- Device authentication
+- Access logging
+- Sensor feedback
+- Scheduling
+- Energy monitoring
+- Voice-assistant integration
+- Stronger IoT security controls
 
-4. Wire the relay modules to GPIO 12 and GPIO 14 (or update the pin definitions in the code to match your wiring).
+## 👨‍💻 Author
 
-5. Upload the sketch to your ESP32 using Arduino IDE.
-
-6. In the Blynk app, create a new device and set up two switch widgets linked to virtual pins **V0** and **V1**.
-
-## Security Note
-
-Credentials (Wi-Fi password and Blynk auth token) are kept in a separate `secrets.h` file, which is excluded from version control via `.gitignore`. Never commit real credentials to a public repository — always use a `secrets.h.example` template with placeholder values instead.
-
-## Future Improvements
-
-- Add authentication/access logging for device control
-- Support additional appliances and sensor feedback (e.g. current status readback)
-- Add scheduling and voice assistant integration
-
-## Author
-
-karunya kanth
-Computer Science and Engineering (IoT & Cybersecurity focus)
-Sasi Institute of Technology & Engineering
+**Karunya Kanth**  
+B.Tech CSE — Cybersecurity & IoT Student | Sasi Engineering
